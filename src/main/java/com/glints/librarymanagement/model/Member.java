@@ -2,10 +2,15 @@ package com.glints.librarymanagement.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "member")
@@ -22,6 +27,10 @@ public class Member extends Persistence {
 	private long contact;
 	@Column
 	private String address;
+	@JoinColumn(name = "databaseFile_id")
+	@OneToOne(targetEntity = DatabaseFile.class, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private DatabaseFile databaseFile;
 	
 	public Member() {
 		super();

@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "files")
-public class DatabaseFile {
+public class DatabaseFile extends Persistence {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -25,8 +25,11 @@ public class DatabaseFile {
 	@Lob
 	private byte[] data;
 	
-	public DatabaseFile(String fileName, String fileType, byte[] data) {
+	public DatabaseFile() {
 		super();
+	}
+
+	public DatabaseFile(String fileName, String fileType, byte[] data) {
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.data = data;
